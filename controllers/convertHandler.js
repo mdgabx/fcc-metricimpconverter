@@ -2,7 +2,7 @@ function ConvertHandler() {
   
   this.getNum = function(input) {
     let result;
-    
+
     return result;
   };
   
