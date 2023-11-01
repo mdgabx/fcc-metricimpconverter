@@ -1,6 +1,8 @@
 function ConvertHandler() {
   
   this.getNum = function(input) {
+    console.log('getNum', getNum)
+
     let result;
 
     return result;
