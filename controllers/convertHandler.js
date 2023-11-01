@@ -1,11 +1,13 @@
 function ConvertHandler() {
   
   this.getNum = function(input) {
-    console.log('getNum', getNum)
+    // let result;
 
-    let result;
 
-    return result;
+
+    // return result;
+    console.log('input', input)
+    return input
   };
   
   this.getUnit = function(input) {

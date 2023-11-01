@@ -10,9 +10,10 @@ module.exports = function (app) {
   app.route('/api/convert').get(function (req, res) {
     let input = req.query.input
 
-    console.log('input', input)
+    let initNum = convertHandler.getNum(input)
 
-    return input;
+
+    return res.json({ initNum });
 
   })
 
