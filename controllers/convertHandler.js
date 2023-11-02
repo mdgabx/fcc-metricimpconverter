@@ -3,8 +3,6 @@ function ConvertHandler() {
   this.getNum = function(input) {
     // let result;
 
-
-
     // return result;
     console.log('input', input)
     return input
