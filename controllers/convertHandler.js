@@ -1,11 +1,19 @@
+// split the number and unit
+
+function numAndUnitSplitter(input) {
+  let regex = /^(\d+(\.\d+)?|(\d+\/\d+))([a-zA-Z]+)$/
+
+  let match = regex.match(input)
+
+  return match
+}
+
 function ConvertHandler() {
   
   this.getNum = function(input) {
-    // let result;
+     let result = numAndUnitSplitter(input);
 
-    // return result;
-    console.log('input', input)
-    return input
+    return result
   };
   
   this.getUnit = function(input) {

@@ -19,12 +19,10 @@ module.exports = function (app) {
       res.send("invalid number")
     } else if (!initUnit) {
       res.send("invalid unit")
-    } else {
-      
     }
 
 
-    return res.json({ initNum });
+    // return res.json({ initNum });
 
   })
 
