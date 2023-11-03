@@ -14,7 +14,6 @@ function numAndUnitSplitter(input) {
 // change unit and vice versa 
 
 function changeUnit( initUnit ) {
-  console.log('initUnit', initUnit)
 
   let returnUnit;
 
@@ -72,6 +71,12 @@ function ConvertHandler() {
     const lbsToKg = 0.453592;
     const miToKm = 1.60934;
     let result;
+
+    if(initUnit === 'gal') {
+      result = initNum * galToL
+    }
+
+    console.log('converted value', result)
     
     return result;
   };

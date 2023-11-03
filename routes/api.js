@@ -12,6 +12,7 @@ module.exports = function (app) {
 
     let initNum = convertHandler.getNum(input)
     let initUnit = convertHandler.getUnit(input)
+    let returnNum = convertHandler.convert(initNum, initUnit)
     let returnUnit = convertHandler.getReturnUnit(initUnit)
     
     if(!initNum && !initUnit) {
@@ -24,6 +25,7 @@ module.exports = function (app) {
       return res.json({ 
         initNum,
         initUnit,
+        returnNum,
         returnUnit
       });
     }
