@@ -1,14 +1,15 @@
 // split the number and unit
 
 function numAndUnitSplitter(input) {
-  console.log('input', input)
 
   let regex = /^(\d+(\.\d+)?|(\d+\/\d+))([a-zA-Z]+)$/
 
   let match = input.match(regex)
-  console.log('match', match)
 
-  return match
+  let unit = match[match.length - 1]
+  let value = match[1]
+
+  return [unit, value]
 }
 
 function ConvertHandler() {
@@ -16,14 +17,13 @@ function ConvertHandler() {
   this.getNum = function(input) {
     let result = numAndUnitSplitter(input);
 
-    console.log('result', result)
-    return result
+    return result[1]
   };
   
   this.getUnit = function(input) {
-    let result;
+    let result = numAndUnitSplitter(input)
     
-    return result;
+    return result[0];
   };
   
   this.getReturnUnit = function(initUnit) {
