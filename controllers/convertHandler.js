@@ -1,7 +1,6 @@
 // split the number and unit
 
 function numAndUnitSplitter(input) {
-
   let regex = /^(\d+(\.\d+)?|(\d+\/\d+))([a-zA-Z]+)$/
 
   let match = input.match(regex)
@@ -10,6 +9,36 @@ function numAndUnitSplitter(input) {
   let value = match[1]
 
   return [unit, value]
+}
+
+// change unit and vice versa 
+
+function changeUnit( initUnit ) {
+  console.log('initUnit', initUnit)
+
+  let returnUnit;
+
+  switch(initUnit) {
+    case "gal":
+      returnUnit = "L";
+      break;
+    case "L":
+      returnUnit = "gal";
+      break;
+    case "lbs":
+      returnUnit = "kg";
+      break;
+    case "kg":
+      returnUnit = "lbs";
+      break;
+    case "mi":
+      returnUnit = "km";
+      break;
+    case "km":
+      returnUnit = "mi";
+      break;
+  }
+  return returnUnit;
 }
 
 function ConvertHandler() {
@@ -27,7 +56,7 @@ function ConvertHandler() {
   };
   
   this.getReturnUnit = function(initUnit) {
-    let result;
+    let result = changeUnit(initUnit);
     
     return result;
   };
