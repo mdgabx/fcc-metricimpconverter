@@ -15,24 +15,13 @@ module.exports = function (app) {
     let returnNum = convertHandler.convert(initNum, initUnit)
     let returnUnit = convertHandler.getReturnUnit(initUnit)
     
-    if(!initNum && !initUnit) {
-      res.send("invalid number and unit")
-    } else if (!initNum) {
-      res.send("invalid number")
-    } else if (!initUnit) {
-      res.send("invalid unit")
-    } else {
+
       return res.json({ 
         initNum,
         initUnit,
         returnNum,
         returnUnit
       });
-    }
-
-
-    
-
   })
 
 };
