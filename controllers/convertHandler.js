@@ -74,6 +74,16 @@ function ConvertHandler() {
 
     if(initUnit === 'gal') {
       result = initNum * galToL
+    } else if (initUnit === 'L') {
+      result = initNum / galToL
+    } else if (initUnit === 'lbs'){
+      result = initNum * lbsToKg
+    } else if (initUnit === 'kg') {
+      result = initNum / lbsToKg
+    } else if (initUnit === 'mi') {
+      result = initNum * miToKm
+    } else if (initUnit === 'km') {
+      result = initNum / miToKm
     }
 
     console.log('converted value', result)
