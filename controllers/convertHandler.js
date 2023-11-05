@@ -5,12 +5,29 @@ function numAndUnitSplitter(input) {
   let number = input.match(/^((\d+(\.\d+))|(\d+\/\d+))/g)
   let unit = input.match(/([a-zA-Z]+)$/g)
 
-  console.log('unit', unit)
-  console.log('number', number);
+  console.log('unit', unit[0])
+  console.log('number', number[0]);
 
+  let value;
 
+  if(number[0].match(/^(\d+\/\d+)$/g)) {
+    console.log('number[0]', number[0])
 
-//  return [value, unit]
+    let numerator = number[0];
+    let denominator = number[2];
+
+    console.log('numerator', numerator)
+    console.log('denominator', denominator)
+
+    value = (numerator / denominator);
+
+  } else {
+    value = number[0]
+  }
+
+  console.log('value', value)
+
+  return [value, unit[0]]
 }
 
 // change unit and vice versa 
