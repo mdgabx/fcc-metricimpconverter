@@ -1,14 +1,16 @@
 // split the number and unit
 
 function numAndUnitSplitter(input) {
-  let regex = /^(\d+(\.\d+)?|(\d+\/\d+))([a-zA-Z]+)$/
+  // let regex = /^(\d+(\.\d+)?|(\d+\/\d+))?([a-zA-Z]+)?$/
+  let number = input.match(/^((\d+(\.\d+))|(\d+\/\d+))/g)
+  let unit = input.match(/([a-zA-Z]+)$/g)
 
-  let match = input.match(regex)
+  console.log('unit', unit)
+  console.log('number', number);
 
-  let unit = match[match.length - 1]
-  let value = match[1]
 
-  return [unit, value]
+
+//  return [value, unit]
 }
 
 // change unit and vice versa 
@@ -37,6 +39,7 @@ function changeUnit( initUnit ) {
       returnUnit = "mi";
       break;
   }
+
   return returnUnit;
 }
 
@@ -45,13 +48,13 @@ function ConvertHandler() {
   this.getNum = function(input) {
     let result = numAndUnitSplitter(input);
 
-    return result[1]
+    return result[0]
   };
   
   this.getUnit = function(input) {
     let result = numAndUnitSplitter(input)
     
-    return result[0];
+    return result[1];
   };
   
   this.getReturnUnit = function(initUnit) {
@@ -84,9 +87,9 @@ function ConvertHandler() {
       result = initNum * miToKm
     } else if (initUnit === 'km') {
       result = initNum / miToKm
+    } else {
+      result = undefined;
     }
-
-    console.log('converted value', result)
     
     return result;
   };
