@@ -20,7 +20,7 @@ suite('Unit Tests', function(){
     test("convertHandler should correctly read a fractional input", function () {
         let input = "1/2L";
         let result = convertHandler.getNum(input);
-        assert.equal(result, "1/2", "Fractions are accepted as input");
+        assert.equal(result, 0.5, "Fractions are accepted as input");
     });
 
     test("convertHandler should correctly read a fractional input with a decimal", function () {
@@ -29,11 +29,12 @@ suite('Unit Tests', function(){
         assert.equal(result, 1.5, "Fractional input with decimal point is incorrect");
     });
 
-    // test("convertHandler should correctly return an error on a double-fraction (i.e. 3/2/3)", function () {
-    //     let input = "3/2/3";
-    //     let result = convertHandler.getNum(input);
-    //     assert.equal(result, "invalid number", );
-    // })
+    test("convertHandler should correctly return an error on a double-fraction (i.e. 3/2/3)", function () {
+        let input = "3/2/3";
+        let result = convertHandler.getNum(input);
+        console.log(result)
+        assert.equal(result, undefined, "A message invalid number is shown");
+    })
 
 
 });

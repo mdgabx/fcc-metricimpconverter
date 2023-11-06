@@ -2,32 +2,32 @@
 
 function numAndUnitSplitter(input) {
   // let regex = /^(\d+(\.\d+)?|(\d+\/\d+))?([a-zA-Z]+)?$/
-  let number = input.match(/^((\d+(\.\d+))|(\d+\/\d+))/g)
-  let unit = input.match(/([a-zA-Z]+)$/g)
-
-  console.log('unit', unit[0])
-  console.log('number', number[0]);
+  let number = input.match(/(\d+(\.\d+)?)|(^\d+\/\d+$)/g) || []
+  let unit = input.match(/([a-zA-Z]+)$/g) || []
 
   let value;
+  let initUnit;
 
-  if(number[0].match(/^(\d+\/\d+)$/g)) {
-    console.log('number[0]', number[0])
-
+  if(number.length > 1 && number.length <= 2) {
+    console.log('num', number)
     let numerator = number[0];
-    let denominator = number[2];
-
-    console.log('numerator', numerator)
-    console.log('denominator', denominator)
+    let denominator = number[1];
 
     value = (numerator / denominator);
 
+  } else if (number.length == 1) {
+    value = number
   } else {
-    value = number[0]
+    value = undefined
   }
 
-  console.log('value', value)
+  if(unit === null) {
+    initUnit = undefined;
+  } else {
+    initUnit = unit[0];
+  }
 
-  return [value, unit[0]]
+  return [value, initUnit]
 }
 
 // change unit and vice versa 
