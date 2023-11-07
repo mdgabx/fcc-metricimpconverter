@@ -1,81 +1,72 @@
 // split the number and unit
 
 function numAndUnitSplitter(input) {
-  // let regex = /^(\d+(\.\d+)?|(\d+\/\d+))?([a-zA-Z]+)?$/
-  let number = input.match(/(\d+(\.\d+)?)|(^\d+\/\d+$)/g) || []
-  let unit = input.match(/([a-zA-Z]+)$/g) || []
+  let number = input.match(/[.\d\/]+/g) || ["1"]; 
+  let unit = input.match(/([a-zA-Z]+)/g)[0];
 
-  let value;
-  let initUnit;
-
-  if(number.length > 1 && number.length <= 2) {
-    console.log('num', number)
-    let numerator = number[0];
-    let denominator = number[1];
-
-    value = (numerator / denominator);
-
-  } else if (number.length == 1) {
-    value = number
-  } else {
-    value = undefined
-  }
-
-  if(unit === null) {
-    initUnit = undefined;
-  } else {
-    initUnit = unit[0];
-  }
-
-  return [value, initUnit]
+  return [number[0], unit];
 }
 
-// change unit and vice versa 
+function checkDiv(posFraction) {
+  let nums = posFraction.split("/");
 
-function changeUnit( initUnit ) {
-
-  let returnUnit;
-
-  switch(initUnit) {
-    case "gal":
-      returnUnit = "L";
-      break;
-    case "L":
-      returnUnit = "gal";
-      break;
-    case "lbs":
-      returnUnit = "kg";
-      break;
-    case "kg":
-      returnUnit = "lbs";
-      break;
-    case "mi":
-      returnUnit = "km";
-      break;
-    case "km":
-      returnUnit = "mi";
-      break;
+  if(nums.length > 2) {
+    return false;
   }
 
-  return returnUnit;
+  return nums;
 }
 
 function ConvertHandler() {
   
   this.getNum = function(input) {
-    let result = numAndUnitSplitter(input);
+    let result = numAndUnitSplitter(input)[0];
+    let nums = checkDiv(result);
 
-    return result[0]
+    if(!nums) {
+      return undefined
+    }
+
+    let num1 = nums[0];
+    let num2 = nums[1] || "1";
+
+    result = parseFloat(num1) / parseFloat(num2);
+
+    if(isNaN(num1) || isNaN(num2)) {
+      return undefined
+    }
+
+    return result;
   };
   
   this.getUnit = function(input) {
-    let result = numAndUnitSplitter(input)
-    
-    return result[1];
+    let result = numAndUnitSplitter(input)[1].toLowerCase();
+
+    switch(result) {
+      case "km":
+        return "km";
+      case "gal":
+        return "gal";
+      case "lbs":
+        return "lbs";
+      case "mi":
+        return "mi";
+      case "l":
+        return "L";
+      case "kg":
+        return "kg";
+      default:
+        return undefined;
+    }
+
   };
   
   this.getReturnUnit = function(initUnit) {
     let result = changeUnit(initUnit);
+
+    if(result === 'l') {
+      result = "L";
+    }
     
     return result;
   };

@@ -32,8 +32,16 @@ suite('Unit Tests', function(){
     test("convertHandler should correctly return an error on a double-fraction (i.e. 3/2/3)", function () {
         let input = "3/2/3";
         let result = convertHandler.getNum(input);
-        console.log(result)
         assert.equal(result, undefined, "A message invalid number is shown");
+    })
+
+    test("convertHandler should correctly convert gal to L", function () {
+        let input = "4.2gal";
+        let initNum = convertHandler.getNum(input)
+        let initUnit = convertHandler.getUnit(input)
+        let result = convertHandler.convert(initNum, initUnit)
+        assert.equal(result, "15.898722000000001", "wrong convertion")
+
     })
 
 
