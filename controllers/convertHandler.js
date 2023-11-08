@@ -62,13 +62,25 @@ function ConvertHandler() {
   };
   
   this.getReturnUnit = function(initUnit) {
-    let result = changeUnit(initUnit);
+    let result = initUnit.toLowerCase();
 
-    if(result === 'l') {
-      result = "L";
+    switch(result) {
+      case "km":
+        return "mi";
+      case "gal":
+        return "L";
+      case "lbs":
+        return "kg";
+      case "mi":
+        return "km";
+      case "l":
+        return "gal";
+      case "kg":
+        return "lbs";
+      default:
+        return undefined;
     }
-    
-    return result;
+
   };
 
   this.spellOutUnit = function(unit) {
