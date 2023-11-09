@@ -84,7 +84,24 @@ function ConvertHandler() {
   };
 
   this.spellOutUnit = function(unit) {
-    let result;
+    let result = unit.toLowerCase();
+
+    switch(result) {
+      case "gal":
+        return "gallons";
+      case "l":
+        return "liters";
+      case "lbs":
+        return "pounds";
+      case "kg":
+        return "kilograms";
+      case "mi":
+        return "miles";
+      case "km":
+        return "kilometers";
+      default:
+        return "don't know";
+    }
     
     return result;
   };
