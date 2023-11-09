@@ -102,8 +102,6 @@ function ConvertHandler() {
       default:
         return "don't know";
     }
-    
-    return result;
   };
   
   this.convert = function(initNum, initUnit) {
