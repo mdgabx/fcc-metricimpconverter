@@ -25,13 +25,12 @@ module.exports = function (app) {
       res.send("invalid unit")
     }
       
-      // return res.json({ 
-      //   initNum,
-      //   initUnit,
-      //   returnNum,
-      //   returnUnit
-      // });
+      return res.json({ 
+        initNum,
+        initUnit,
+        returnNum,
+        returnUnit
+      });
 
-  })
-
+  });
 };
