@@ -1,10 +1,13 @@
 // split the number and unit
 
 function numAndUnitSplitter(input) {
-  let number = input.match(/[.\d\/]+/g) || ["1"]; 
+  let number = input.match(/(?:\d+(\.\d+)?|\d+\/\d+)/g) || ["1"]; 
   let unit = input.match(/([a-zA-Z]+)/g)[0];
 
-  return [number[0], unit];
+  console.log('number', number)
+  console.log('unit', unit);
+
+  return [number, unit];
 }
 
 function checkDiv(posFraction) {
@@ -142,6 +145,7 @@ function ConvertHandler() {
   
   this.getString = function(initNum, initUnit, returnNum, returnUnit) {
     let result = `${initNum} ${this.spellOutUnit(initUnit)} converts to ${returnNum} ${this.spellOutUnit(returnUnit)}`;
+    
     return result;
   };
   
