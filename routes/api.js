@@ -13,18 +13,23 @@ module.exports = function (app) {
 
     let initNum = convertHandler.getNum(input)
     let initUnit = convertHandler.getUnit(input)
-    let returnNum = convertHandler.convert(initNum, initUnit)
-    let returnUnit = convertHandler.getReturnUnit(initUnit)
-    let toString = convertHandler.getString(initNum, initUnit, returnNum, returnUnit);
+   
 
     if(!initNum && !initUnit) {
-      res.send("invalid number and unit")
+      res.json("invalid number and unit")
+      return
     } else if (!initNum) {
-      res.send("invalid number")
+      res.json("invalid number")
+      return
     } else if (!initUnit) {
-      res.send("invalid unit")
-    }
-      
+      res.json("invalid unit")
+      return
+    } else {
+
+      let returnNum = convertHandler.convert(initNum, initUnit)
+      let returnUnit = convertHandler.getReturnUnit(initUnit)
+      let toString = convertHandler.getString(initNum, initUnit, returnNum, returnUnit);
+
       return res.json({ 
         initNum,
         initUnit,
@@ -32,6 +37,9 @@ module.exports = function (app) {
         returnUnit,
         string: toString   
       });
+    }
+      
+    
 
   });
 };
