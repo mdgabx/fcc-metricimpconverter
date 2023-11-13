@@ -29,7 +29,8 @@ module.exports = function (app) {
         initNum,
         initUnit,
         returnNum,
-        returnUnit
+        returnUnit,
+        string: toString   
       });
 
   });
