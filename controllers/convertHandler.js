@@ -1,70 +1,67 @@
 // split the number and unit
 
 function numAndUnitSplitter(input) {
-  let number = input.match(/(?:\d+(\.\d+)?|\d+\/\d+)/g) || ["1"]; 
-  let unit = input.match(/([a-zA-Z]+)/g)[0];
+  let match = input.match(/^(\d+(\.\d+)?(?:\/\d+(\.\d+)?)?)([a-zA-Z]+)?$/);
 
-  console.log('number', number)
-  console.log('unit', unit);
-
-  return [number, unit];
-}
-
-function checkDiv(posFraction) {
-  let nums = posFraction.split("/");
-
-  if(nums.length > 2) {
-    return false;
+  if (!match) {
+    // If there's no match, treat the number as 1 and return the unit
+    return [1, input];
   }
 
-  return nums;
+  let number = match[1] || 1;
+  let unit = match[4]; // Adjusted index to capture the unit correctly
+
+  let value;
+
+  if (number.match(/^\d+\/\d+$/)) {
+    let fraction = number.split('/');
+    let numerator = fraction[0];
+    let denominator = fraction[1];
+    value = numerator / denominator;
+  } else {
+    value = parseFloat(number);
+  }
+
+  return [value, unit];
 }
 
 function ConvertHandler() {
   
   this.getNum = function(input) {
-    let result = numAndUnitSplitter(input)[0];
-    let nums = checkDiv(result);
+    let result = numAndUnitSplitter(input)
 
-    if(!nums) {
-      return undefined
-    }
-
-    let num1 = nums[0];
-    let num2 = nums[1] || "1";
-
-    result = parseFloat(num1) / parseFloat(num2);
-
-    if(isNaN(num1) || isNaN(num2)) {
-      return undefined
-    }
-
-    return result;
+    return result[0];
   };
   
   this.getUnit = function(input) {
-    let result = numAndUnitSplitter(input)[1].toLowerCase();
+      let result = numAndUnitSplitter(input)
 
-    switch(result) {
-      case "km":
-        return "km";
-      case "gal":
-        return "gal";
-      case "lbs":
-        return "lbs";
-      case "mi":
-        return "mi";
-      case "l":
-        return "L";
-      case "kg":
-        return "kg";
-      default:
-        return undefined;
+      if(result[1] !== undefined) {
+        let unit = result[1].toLowerCase();
+
+        switch(unit) {
+        case "km":
+          return "km";
+        case "gal":
+          return "gal";
+        case "lbs":
+          return "lbs";
+        case "mi":
+          return "mi";
+        case "l":
+          return "L";
+        case "kg":
+          return "kg";
+        default:
+          return undefined;
+      } 
     }
-
   };
   
   this.getReturnUnit = function(initUnit) {
+
+    if(initUnit) {
+      
     let result = initUnit.toLowerCase();
 
     switch(result) {
@@ -82,6 +79,7 @@ function ConvertHandler() {
         return "lbs";
       default:
         return undefined;
+      }      
     }
 
   };
