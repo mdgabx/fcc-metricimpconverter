@@ -1,28 +1,73 @@
 // split the number and unit
 
 function numAndUnitSplitter(input) {
-  let match = input.match(/^(\d+(\.\d+)?(?:\/\d+(\.\d+)?)?)([a-zA-Z]+)?$/);
+  let number = input.match(/(\d+(?:\.\d+)?)/g); 
+  let unit = input.match(/[a-zA-Z]+/);
 
-  if (!match) {
-    // If there's no match, treat the number as 1 and return the unit
-    return [1, input];
-  }
+  console.log('number', number);
+  console.log('unit', unit);
 
-  let number = match[1] || 1;
-  let unit = match[4]; // Adjusted index to capture the unit correctly
+  // console.log(validateInput)
 
-  let value;
+  // if(!validateInput) {
+  //   return [undefined, undefined]
+  // } else {
+  //   console.log('valid input');
+  // }
 
-  if (number.match(/^\d+\/\d+$/)) {
-    let fraction = number.split('/');
-    let numerator = fraction[0];
-    let denominator = fraction[1];
-    value = numerator / denominator;
-  } else {
-    value = parseFloat(number);
-  }
+  
 
-  return [value, unit];
+  // console.log('match', match);
+
+
+  // if(!match && input.length > 0) {
+  //   let checkIfUnit = match.match(/^[a-zA-Z]+$/)
+
+  //   console.log('checkIfUnit', checkIfUnit);
+
+  //   // number = 1;
+  //   // unit = checkIfUnit[0];
+
+  // } else if (match && input.length > 0) {
+    
+  //   // console.log('match else if', match)
+
+  // } else {
+  //   number = undefined
+  //   unit = undefined
+
+  // }
+
+  // console.log('number', number);
+  // console.log('unit', unit)
+
+  // // let unit = input.match(/[a-zA-Z]+/g)[0];
+
+  // // console.log('number', number)
+  // // console.log('unit', unit)
+
+  // // if (!match) {
+  // //   // If there's no match, treat the number as 1 and return the unit
+  // //   return [1,input];
+  // // }
+
+  // // let number = match[1] || 1;
+  // // let unit = match[4]; // Adjusted index to capture the unit correctly
+
+  // // let value;
+
+  // // if (number.match(/^\d+\/\d+$/)) {
+  // //   let fraction = number.split('/');
+  // //   let numerator = fraction[0];
+  // //   let denominator = fraction[1];
+  // //   value = numerator / denominator;
+  // // } else {
+  // //   value = parseFloat(number);
+  // // }
+
+  // // return [value, unit];
+
+  // // return [number, unit]
 }
 
 function ConvertHandler() {
