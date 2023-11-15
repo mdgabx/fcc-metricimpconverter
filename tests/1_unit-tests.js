@@ -40,7 +40,7 @@ suite('Unit Tests', function(){
         let initNum = convertHandler.getNum(input)
         let initUnit = convertHandler.getUnit(input)
         let result = convertHandler.convert(initNum, initUnit)
-        assert.equal(result, "15.898722000000001", "wrong convertion")
+        assert.equal(result, "15.89872", "wrong convertion")
 
     })
 

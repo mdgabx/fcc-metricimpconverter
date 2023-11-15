@@ -16,13 +16,13 @@ module.exports = function (app) {
    
 
     if(!initNum && !initUnit) {
-      res.json("invalid number and unit")
+      res.json('invalid number and unit')
       return
     } else if (!initNum) {
-      res.json("invalid number")
+      res.json('invalid number')
       return
     } else if (!initUnit) {
-      res.json("invalid unit")
+      res.json('invalid unit')
       return
     } else {
 

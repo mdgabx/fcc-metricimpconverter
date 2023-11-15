@@ -6,11 +6,14 @@ function numAndUnitSplitter(input) {
     let number = input.match(/(\d+(?:\.\d+)?)/g) || 1; 
     let unit = input.match(/[a-zA-Z]+/);
 
+    console.log('number', number)
+
     if(!unit) {
       unit = undefined
     } else {
       unit = unit[0]
     }
+
 
     // check the number for possible fractions
     let value = checkNumber(number)
