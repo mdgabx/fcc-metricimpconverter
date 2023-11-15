@@ -1,73 +1,47 @@
 // split the number and unit
 
 function numAndUnitSplitter(input) {
-  let number = input.match(/(\d+(?:\.\d+)?)/g); 
-  let unit = input.match(/[a-zA-Z]+/);
 
-  console.log('number', number);
-  console.log('unit', unit);
+  if(input) {
+    let number = input.match(/(\d+(?:\.\d+)?)/g) || 1; 
+    let unit = input.match(/[a-zA-Z]+/);
 
-  // console.log(validateInput)
+    if(!unit) {
+      unit = undefined
+    } else {
+      unit = unit[0]
+    }
 
-  // if(!validateInput) {
-  //   return [undefined, undefined]
-  // } else {
-  //   console.log('valid input');
-  // }
+    // check the number for possible fractions
+    let value = checkNumber(number)
 
-  
+    return [value, unit]
 
-  // console.log('match', match);
+  } else {
+    return [1, undefined]
+  }
+
+}
 
 
-  // if(!match && input.length > 0) {
-  //   let checkIfUnit = match.match(/^[a-zA-Z]+$/)
+// check the number if fraction  
 
-  //   console.log('checkIfUnit', checkIfUnit);
+function checkNumber(possibleFraction) {
 
-  //   // number = 1;
-  //   // unit = checkIfUnit[0];
+  let value;
 
-  // } else if (match && input.length > 0) {
-    
-  //   // console.log('match else if', match)
+  if(possibleFraction.length > 2) {
+    return undefined
+  } else if (possibleFraction.length === 1) {
+    value = parseFloat(possibleFraction[0])
+  } else {
+    let numerator = possibleFraction[0]
+    let denominator = possibleFraction[1]
+    value = parseFloat(numerator) / parseFloat(denominator)
+  }
 
-  // } else {
-  //   number = undefined
-  //   unit = undefined
+  return value;
 
-  // }
-
-  // console.log('number', number);
-  // console.log('unit', unit)
-
-  // // let unit = input.match(/[a-zA-Z]+/g)[0];
-
-  // // console.log('number', number)
-  // // console.log('unit', unit)
-
-  // // if (!match) {
-  // //   // If there's no match, treat the number as 1 and return the unit
-  // //   return [1,input];
-  // // }
-
-  // // let number = match[1] || 1;
-  // // let unit = match[4]; // Adjusted index to capture the unit correctly
-
-  // // let value;
-
-  // // if (number.match(/^\d+\/\d+$/)) {
-  // //   let fraction = number.split('/');
-  // //   let numerator = fraction[0];
-  // //   let denominator = fraction[1];
-  // //   value = numerator / denominator;
-  // // } else {
-  // //   value = parseFloat(number);
-  // // }
-
-  // // return [value, unit];
-
-  // // return [number, unit]
 }
 
 function ConvertHandler() {
