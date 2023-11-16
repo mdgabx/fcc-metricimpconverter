@@ -6,25 +6,31 @@ function numAndUnitSplitter(input) {
     // test the input 
     // ^(\S+)([a-zA-Z]+)?$|^(\S+)\/(\S+)([a-zA-Z]+)?$|^[a-zA-Z]+$
 
-    let number = input.match(/(^\d+(\.\d+)?$)|(^\d+(\.\d+)?\/\d+(\.\d+)?$)/g); 
-    // let number = input.match(/^(\S+)([a-zA-Z]+)?$|^(\S+)\/(\S+)([a-zA-Z]+)?$|^[a-zA-Z]+$/)
+    // get the units and initial value
 
-    let unit = input.match(/[a-zA-Z]+/);
+    let valueMatch = input.match(/[^a-zA-Z]+/);
+    let unitMatch = input.match(/[a-zA-Z]+/);
 
     console.log('number', number)
     console.log('unit', unit)
 
-    if(!unit) {
-      unit = undefined
-    } else {
-      unit = unit[0]
+    if(valueMatch) {
+      // check if there are whole(w decimal) or fraction
+
+      let number = valueMatch.match(//g)
     }
 
+    // if(!unit) {
+    //   unit = undefined
+    // } else {
+    //   unit = unit[0]
+    // }
 
-    // check the number for possible fractions
-    let value = checkNumber(number)
 
-    return [value, unit]
+    // // check the number for possible fractions
+    // let value = checkNumber(number)
+
+    // return [value, unit]
 
   } else {
     return [1, undefined]
