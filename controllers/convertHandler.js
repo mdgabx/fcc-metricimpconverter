@@ -3,10 +3,16 @@
 function numAndUnitSplitter(input) {
 
   if(input) {
-    let number = input.match(/(\d+(?:\.\d+)?)/g) || 1; 
+    // test the input 
+    // ^(\S+)([a-zA-Z]+)?$|^(\S+)\/(\S+)([a-zA-Z]+)?$|^[a-zA-Z]+$
+
+    let number = input.match(/(^\d+(\.\d+)?$)|(^\d+(\.\d+)?\/\d+(\.\d+)?$)/g); 
+    // let number = input.match(/^(\S+)([a-zA-Z]+)?$|^(\S+)\/(\S+)([a-zA-Z]+)?$|^[a-zA-Z]+$/)
+
     let unit = input.match(/[a-zA-Z]+/);
 
     console.log('number', number)
+    console.log('unit', unit)
 
     if(!unit) {
       unit = undefined
