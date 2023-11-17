@@ -3,39 +3,45 @@
 function numAndUnitSplitter(input) {
 
   if(input) {
-    // test the input 
-    // ^(\S+)([a-zA-Z]+)?$|^(\S+)\/(\S+)([a-zA-Z]+)?$|^[a-zA-Z]+$
-
     // get the units and initial value
 
     let valueMatch = input.match(/[^a-zA-Z]+/);
     let unitMatch = input.match(/[a-zA-Z]+/);
 
-    console.log('number', number)
-    console.log('unit', unit)
+    let number;
+    let unit;
 
     if(valueMatch) {
       // check if there are whole(w decimal) or fraction
+      let validNumRegex = /^(\d+(\.\d+)?)$|^(\d+(\.\d+)?\/\d+(\.\d+)?)$/g;
 
-      let number = valueMatch.match(//g)
+      if(validNumRegex.test(valueMatch)) {
+        let value = valueMatch;
+
+        // check for fraction
+        number = checkNumber(value);
+
+      } else {
+        number = undefined
+      }
+    } else {
+      number = 1;
     }
 
-    // if(!unit) {
-    //   unit = undefined
-    // } else {
-    //   unit = unit[0]
-    // }
+    if(unitMatch) {
+      unit = unitMatch[0]
+    } else {
+      unit = undefined;
+    }
 
+    console.log('number', number);
+    console.log('unit', unit);
 
-    // // check the number for possible fractions
-    // let value = checkNumber(number)
-
-    // return [value, unit]
+    return [number, unit];
 
   } else {
     return [1, undefined]
   }
-
 }
 
 
@@ -43,20 +49,18 @@ function numAndUnitSplitter(input) {
 
 function checkNumber(possibleFraction) {
 
-  let value;
+  let value = possibleFraction;
+  let returnValue;
+  let nums;
 
-  if(possibleFraction.length > 2) {
-    return undefined
-  } else if (possibleFraction.length === 1) {
-    value = parseFloat(possibleFraction[0])
+  if(/^\d+(\.\d+)?\/\d+(\.\d+)?$/.test(value)) {
+   nums = value[0].split("/")
+   returnValue = parseFloat(nums[0]) / parseFloat(nums[1])
   } else {
-    let numerator = possibleFraction[0]
-    let denominator = possibleFraction[1]
-    value = parseFloat(numerator) / parseFloat(denominator)
+    returnValue = parseFloat(value[0])
   }
 
-  return value;
-
+  return returnValue;
 }
 
 function ConvertHandler() {
