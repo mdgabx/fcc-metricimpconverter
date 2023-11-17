@@ -33,10 +33,7 @@ function numAndUnitSplitter(input) {
     } else {
       unit = undefined;
     }
-
-    console.log('number', number);
-    console.log('unit', unit);
-
+    
     return [number, unit];
 
   } else {
