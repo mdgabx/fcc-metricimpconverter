@@ -18,6 +18,8 @@ suite('Functional Tests', function() {
                     expect(err).to.be.null;
                     expect(res).to.have.status(200)
 
+                
+
                     assert.equal(res.body.initNum, 10)
                     assert.approximately(res.body.returnNum, 2.64172, 0.1)
 
@@ -32,7 +34,7 @@ suite('Functional Tests', function() {
                 .end(function (err, res) {
                     expect(err).to.be.null
                     expect(res).to.have.status(200)
-                    expect(res.body).to.equal("invalid unit")
+                    assert.equal(res.body.initNum, undefined);
 
                     done();
                 });
@@ -45,13 +47,38 @@ suite('Functional Tests', function() {
                 .end(function(err, res) {
                     expect(err).to.be.null
                     expect(res).to.have.status(200)
-                    expect(res.body).to.equal("invalid number")
+                    assert.equal(res.body.initNum, undefined)
 
                     done();
                 });
         });
 
-        
+        test("Convert an invalid number AND unit such as 3/7.2/4kilomegagram: GET request to /api/convert.", function (done) {
+            chai.request(server)
+                .get('/api/convert')
+                .query({ input: "3/7.2/4kilomegagram" })
+                .end(function(err, res) {
+                    expect(err).to.be.null
+                    expect(res).to.have.status(200)
+                    assert.equal(res.body.initNum, undefined)
+                    assert.equal(res.body.initUnit, undefined)
+
+                    done();
+                });
+        });
+
+        test("Convert with no number such as kg: GET request to /api/convert.", function(done) {
+            chai.request(server)
+                .get('/api/convert')
+                .query({ input: "kg" })
+                .end(function(err, res) {
+                    expect(err).to.be.null;
+                    expect(res).to.have.status(200)
+                    assert.equal(res.body.initNum, 1)
+
+                    done();
+                });
+        });
 
 
     })
